@@ -11,4 +11,4 @@ RUN wget https://github.com/cloudprober/cloudprober/releases/download/${ENV:CLOU
     Remove-Item -Path c:\tools\cloudprober.zip –Recurse; `
     Remove-Item -Path c:\tools\cloudprober -Force -Recurse;
 
-ENTRYPOINT ["c:\tools\cloudprober.exe", "--logtostderr"]
+ENTRYPOINT ["c:\tools\cloudprober", "--logtostderr"]
