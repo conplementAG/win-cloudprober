@@ -25,6 +25,7 @@ jobs:
           
     - name: Build and Push container to ACR
       run: |
-        docker build -t conplementag/win-cloudprober:latest-2022 .
+        echo "Used cloudprober version: ${{ vars.CLOUDPROBERVERSION }}"
+        docker build -t conplementag/win-cloudprober:latest-2022 --build-arg CLOUDPROBERVERSION=${{ vars.CLOUDPROBERVERSION }} .
         docker push conplementag/win-cloudprober:latest-2022
 
