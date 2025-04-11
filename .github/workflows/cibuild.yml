@@ -1,6 +1,7 @@
 name: Docker Image CI
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: 0 1 * * 3 # every wednesday at 1 AM
   push:
@@ -16,15 +17,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      
+
     - name: Login to DockerHub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
+
     - name: Build and Push container to ACR
       run: |
-        docker build -t conplementag/win-cloudprober:latest-2022 .
+        echo "Used cloudprober version: ${{ vars.CLOUDPROBERVERSION }}"
+        docker build -t conplementag/win-cloudprober:latest-2022 --build-arg CLOUDPROBERVERSION=${{ vars.CLOUDPROBERVERSION }} .
         docker push conplementag/win-cloudprober:latest-2022
 

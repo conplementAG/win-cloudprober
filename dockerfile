@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2022 AS servercore
 SHELL ["powershell"]
 WORKDIR c:\tools
 
-ARG CLOUDPROBERVERSION=v0.13.7
+ARG CLOUDPROBERVERSION
 
 RUN wget https://github.com/cloudprober/cloudprober/releases/download/${ENV:CLOUDPROBERVERSION}/cloudprober-${ENV:CLOUDPROBERVERSION}-windows-x86_64.zip -outfile "c:\tools\cloudprober.zip"; `
     Expand-Archive -Path c:\tools\cloudprober.zip -DestinationPath c:\tools\cloudprober; `
